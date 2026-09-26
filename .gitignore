@@ -1,0 +1,20 @@
+# 密钥（绝对不能提交）
+.env
+.env.*
+
+# npm / 工具
+node_modules/
+.tools/
+.tmp/
+
+# Godot（第 2 周开始会用到）
+.godot/
+*.import
+export/
+
+# 系统与编辑器文件
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.tmp
