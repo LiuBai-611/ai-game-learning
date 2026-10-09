@@ -8,18 +8,27 @@ REM  because cmd.exe redirection garbles Chinese text. You will
 REM  paste the Chinese template in afterwards.
 REM ============================================================
 
-set "GIT=D:\dev\Git\cmd\git.exe"
-if not exist "%GIT%" (
-  echo [ERROR] git not found at %GIT%
+REM ---- locate git: 1) PATH  2) common install locations ----
+set "GIT="
+for /f "delims=" %%i in ('where git 2^>nul') do if not defined GIT set "GIT=%%i"
+if not defined GIT if exist "D:\dev\Git\cmd\git.exe" set "GIT=D:\dev\Git\cmd\git.exe"
+if not defined GIT if exist "%ProgramFiles%\Git\cmd\git.exe" set "GIT=%ProgramFiles%\Git\cmd\git.exe"
+if not defined GIT if exist "%LOCALAPPDATA%\Programs\Git\cmd\git.exe" set "GIT=%LOCALAPPDATA%\Programs\Git\cmd\git.exe"
+if not defined GIT (
+  echo [ERROR] git not found.
+  echo         Install Git for Windows first (https://git-scm.com/download/win),
+  echo         then close this window and run this script again.
   pause
   exit /b 1
 )
+echo Using git: %GIT%
+echo.
 
 echo ============================================================
 echo   Git setup  (Day 01)
 echo ============================================================
 echo.
-echo Use the SAME email as your GitHub account (Liubai-611).
+echo Use the SAME email as your GitHub account (LiuBai-611).
 echo The name is only a label, it can be your nickname.
 echo.
 set /p GNAME=  Your name or nickname:
@@ -47,28 +56,16 @@ echo -- writing global config --
 
 echo.
 echo -- result --
-"%GIT%" config --global --list
+REM 只回显 name / email 两项。不要用 --list：它会把全部全局配置（含凭证助手等）
+REM 一起打印出来，而这段输出是要截图发给别人核对的。
+"%GIT%" config --global user.name
+"%GIT%" config --global user.email
 
 echo.
-echo -- creating the log file --
-set "LOG=D:\dev\ai-game-learning\学习日志.md"
-if not exist "D:\dev\ai-game-learning" mkdir "D:\dev\ai-game-learning"
-
-if exist "%LOG%" (
-  echo   already exists, leaving it alone:
-  echo   %LOG%
-) else (
-  > "%LOG%" echo # Learning Log
-  >>"%LOG%" echo.
-  >>"%LOG%" echo ^> Paste the Chinese template from the learning plan
-  >>"%LOG%" echo ^> folder here on first use.
-  >>"%LOG%" echo.
-  >>"%LOG%" echo ## Daily Record
-  >>"%LOG%" echo.
-  >>"%LOG%" echo ^| Date ^| Day ^| What I did ^| Concept I understood ^| Where I got stuck ^| First thing tomorrow ^|
-  >>"%LOG%" echo ^|---|---|---|---|---|---^|
-  echo   created: %LOG%
-)
+echo -- note --
+echo   This script does NOT create the log file any more.
+echo   D:\dev\ai-game-learning must stay EMPTY for step 2
+echo   (git clone ... .) to work. Create the log in step 4.
 
 echo.
 echo ============================================================
@@ -81,6 +78,6 @@ echo   (press Win+R, type cmd, press Enter) so the new PATH
 echo   takes effect. Then run:
 echo.
 echo       git --version
-echo       git config --global --list
+echo       git config --global user.name
 echo.
 pause

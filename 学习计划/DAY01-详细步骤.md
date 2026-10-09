@@ -1,6 +1,14 @@
-# Day 01 完整步骤（照着做，今天就能完成）
+# Day 01 完整步骤（✅ 已完成，保留备查）
 
-> 当前进度：Git 已装好 ✅ ｜ GitHub 账号已注册 ✅ ｜ 仓库 `Liubai-611/ai-game-learning` 已创建 ✅
+> **完成状态（2026-09-26 核实）**：
+> - Git 已装 ✅（实际路径 `D:\dev\Git\`）｜ 全局配置已设 ✅（用户名 `刘白`；邮箱用你注册 GitHub 的那个——**⚠️ 邮箱、Token、API Key 一律不要写进任何会被推送到公开仓库的文档**）
+> - GitHub 账号已注册 ✅ ｜ 仓库 `LiuBai-611/ai-game-learning` 已创建并**成功推送** ✅
+> - 本地仓库在 `D:\dev\ai-game-learning`，已有 5 条提交 ✅
+> - **过程中真实踩的坑（已解决，记录备查）**：① GitHub 下载通道被阻断 → 换镜像；② Git 授权弹窗反复失败 → 改用 Token
+>
+> ⚠️ **用户名大小写**：正确写法是 **`LiuBai-611`**（大写 B），本文原稿写成 `Liubai-611`（小写 b）。GitHub 地址不区分大小写所以能用，但**写文档、加好友、填资料时用正确的大小写**。
+>
+> 下面是完整流程，**换电脑重做时照着走**。**注意第 2 步必须先建目录**（原稿漏了，直接 `cd` 会失败）。
 
 ---
 
@@ -15,7 +23,7 @@
 | `Your name or nickname` | `Liubai-611`（或你的真名，随意。这只是提交记录上显示的标签） |
 | `Your GitHub email` | **注册 GitHub 用的那个邮箱**（必须一致，否则 GitHub 不认你的提交） |
 
-跑完它会打印出全部配置。**把那段输出截图发我**，我帮你核对。
+跑完它只打印你的 name 和 email 这两项（不会打印其他全局配置）。**核对这两项**即可。
 
 > 为什么要你亲自跑：`git config` 需要你的邮箱，我不能替你编一个。
 > 脚本做的事就是替你输入这几条命令：
@@ -35,11 +43,17 @@
 **开一个新终端**（`Win + R` → 输入 `cmd` → 回车），然后逐条粘贴：
 
 ```cmd
+mkdir D:\dev\ai-game-learning
 cd /d D:\dev\ai-game-learning
-git clone https://github.com/Liubai-611/ai-game-learning.git .
+git clone https://github.com/LiuBai-611/ai-game-learning.git .
 ```
 
+> ⚠️ **第一行 `mkdir` 不能省**。原稿没有它，如果 `D:\dev\ai-game-learning` 还不存在，`cd` 会直接报"系统找不到指定的路径"，后面全失败。
+> （`cd` 只负责"切换"到已有目录，**不会创建**目录。这点以后写脚本时经常用到。）
+
 > 注意最后那个 **`.`** 不能漏！它表示"克隆到当前目录"，而不是新建一层文件夹。
+>
+> ⚠️ **克隆的目标目录必须是空的**。如果你之前跑过旧版 `day01-setup.cmd`（它会在里面预建 `学习日志.md`），先把那个文件移走或删掉再克隆，否则会报 `destination path '.' already exists and is not an empty directory`。**当前版本已改成不预建日志，就是为了避免这个冲突。**
 
 看到 `done.` 就成功了。然后验证：
 
@@ -66,8 +80,9 @@ git log --oneline
 .env.*
 
 # Godot（第 2 周开始会用到）
+# 只忽略缓存目录。⚠️ 不要忽略 *.import / *.uid：
+# 它们保存资源的导入设置和稳定 ID，必须提交，否则别人重新导入会得到不同结果。
 .godot/
-*.import
 export/
 
 # 系统文件
