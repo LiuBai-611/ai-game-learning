@@ -38,7 +38,7 @@
 | Git | ✅ 已装（2.55，路径 `D:\dev\Git\`） | Day 01 已完成 |
 | GitHub 仓库 | ✅ 已建并推送（`LiuBai-611/ai-game-learning`，本地 `D:\dev\ai-game-learning`） | Day 01 已完成 |
 | Godot | ❌ 未装 | Day 08 安装 |
-| VS Code | ✅ **已装**（2026-10-10 经 winget 装好，1.140.0，含中文包/Prettier/GitLens） | 已完成 |
+| VS Code | ✅ **已装**（`D:\124\Agent\Microsoft VS Code`，1.140.0，含中文包/Prettier/GitLens） | 已完成 |
 | GitHub Desktop | ❌ 未装 | **Day 05 之前必须补**（`05` A3 节；不想装就走命令行 `git`） |
 | Python | ⚠️ 只是商店占位程序 | 全程不需要，**不要装** |
 

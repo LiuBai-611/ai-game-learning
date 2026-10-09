@@ -10,7 +10,7 @@
 
 **本机状态（今天已核实）**：VS Code **原本未装**，已用 winget 装好 → 见本文件末尾「本机执行记录」。
 **打开方式**：开始菜单搜 `Code`（已建快捷方式），或命令行 `code D:\dev\ai-game-learning`。
-> ⚠️ `code` 命令要**新开一个终端**才生效（安装程序把 `...\Programs\Microsoft VS Code\bin` 加进了你的用户 PATH）。已经开着的终端窗口认不到，重开一个即可。
+> ⚠️ `code` 命令要**新开一个终端**才生效（安装程序把 `D:\124\Agent\Microsoft VS Code\bin` 加进了你的用户 PATH）。已经开着的终端窗口认不到，重开一个即可。
 
 **已经装好了，下面这三件是留给你自己走一遍的验收动作**：
 
@@ -219,7 +219,7 @@ Terra/旗舰：找到 __/5，附加分 __，把干扰项误判了吗：是/否
 |---|---|
 | Git | ✅ `git version 2.55.0.windows.5` |
 | 仓库 | ✅ `D:\dev\ai-game-learning`，工作区干净，远端 `LiuBai-611/ai-game-learning`（远端 8 条提交 + 本地 1 条待推送） |
-| VS Code | ✅ **已装**：1.140.0（x64），用户级安装，`code` 命令可用（新终端里可用） |
+| VS Code | ✅ **已装到 D 盘**：`D:\124\Agent\Microsoft VS Code`（1.140.0 用户级安装；2026-10-10 从 C 盘迁来，PATH / 快捷方式 / 文件关联 / 卸载项已一并修正） |
 | 三个扩展 | ✅ 已装：中文包 `1.131.2026090407` · Prettier `12.4.0` · GitLens `19.3.0` |
 | 本地提交 | ✅ 已提交（Day 03 全部文件，`git log` 最新一条） |
 | 推送 GitHub | ❌ **被网络挡住**（`Connection was reset`，TCP 通、TLS 被干扰）。待网络恢复后跑 `git push origin main` |
@@ -231,9 +231,9 @@ Terra/旗舰：找到 __/5，附加分 __，把干扰项误判了吗：是/否
 ### 我今天替你做掉的部分（照着核一遍就行）
 
 ```powershell
-# 1) 装 VS Code（用户级，不需要管理员）
-winget install --id Microsoft.VisualStudioCode -e --scope user --accept-package-agreements --accept-source-agreements --disable-interactivity
-# → 已成功安装 1.140.0
+# 1) 装 VS Code（用户级，不需要管理员；--location 指定到 D 盘）
+winget install --id Microsoft.VisualStudioCode -e --scope user --location "D:\124\Agent\Microsoft VS Code" --accept-package-agreements --accept-source-agreements --disable-interactivity
+# → 已成功安装 1.140.0（2026-10-10 02:35 从 C 盘迁移到 D:\124\Agent\Microsoft VS Code）
 
 # 2) 装三个扩展
 code --install-extension MS-CEINTL.vscode-language-pack-zh-hans
