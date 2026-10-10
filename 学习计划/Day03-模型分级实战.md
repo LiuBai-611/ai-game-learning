@@ -29,9 +29,19 @@
    > code --install-extension esbenp.prettier-vscode
    > code --install-extension eamodio.gitlens
    > ```
-3. 在 VS Code 里按 `Ctrl+Shift+P` → 输入 `reload` → 选 `Developer: Reload Window`，界面变中文即成功
+3. **让中文生效**（⚠️ 2026-10-10 更正：**光装扩展 + 重载窗口是不够的**，必须指定显示语言）：
+   - 打开 `C:\Users\ASUS\.vscode\argv.json`，在大括号里加一行：
+     ```jsonc
+     "locale": "zh-cn",
+     ```
+   - 然后**完全退出 VS Code 再重开**（关掉所有窗口；托盘图标也要退出）。只点"重载窗口"不生效。
+   - 或者用界面：`Ctrl+Shift+P` → 输入 `display` → 选 **Configure Display Language** → 选「中文(简体)」→ 按提示重启。
+   - 本机已于 2026-10-10 加好这一行（`argv.json` 里能看到 `"locale": "zh-cn"`）。
 
-> ❗ **常见坑**：装完没重启 VS Code，中文包不生效（以为装失败）。任何"语言/主题/扩展装了没反应"，第一反应都是**重载窗口**。
+> ❗ **常见坑**：
+> - **中文包装了 ≠ 界面变中文**。VS Code 的显示语言要在 `argv.json` 里指定（或走上面的命令），指定后**必须整体重启**。
+> - 语言包版本号（如 `1.131.x`）不等于"必须匹配 VS Code 版本"——只要它声明的 `engines.vscode` 范围（如 `^1.131.0`）包含你当前的版本（如 `1.140.0`）就兼容。**别为了这个去降级 VS Code。**
+> - 其它"装了没反应"（主题/扩展）才是重载窗口解决。
 
 ---
 
@@ -247,6 +257,6 @@ code --list-extensions --show-versions
 ```
 
 **你只需要做一件事**：开始菜单搜 `Code` → 打开 → `文件 → 打开文件夹` → 选 `D:\dev\ai-game-learning`。  
-**如果界面还是英文**：`Ctrl+Shift+P` → 输入 `reload` → 选 `Developer: Reload Window`。
+**如果界面还是英文**：不是重载窗口的事——见上文第 0 步第 3 条（要在 `%USERPROFILE%\.vscode\argv.json` 里加 `"locale": "zh-cn"`，然后**整体重启**）。
 
 > ❗ 我**没有**替你启动 VS Code 窗口，也没有替你点"信任此文件夹"——那两个动作属于你，第一次打开要自己走一遍。
